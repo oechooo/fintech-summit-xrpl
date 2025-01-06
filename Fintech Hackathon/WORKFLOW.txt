@@ -1,0 +1,46 @@
+
+### Updated Workflow: EVM-Only Buyers and Sellers
+
+#### 1. Seller Lists Tokens
+- The seller uses their **EVM wallet** to:
+  - Lock **ERC-20 tokens** in the smart contract for sale.
+  - Provide their EVM wallet address as part of the listing information.
+
+#### 1.5. Convert ETH to XRP using our pool of XRP currency
+- Use our XRP funds to:
+  - Check exchange rates using CoinGecko or equivalent
+  - Keep buyer / seller funds in our ETH pool, and use our XRP pool to complete transaction
+  - Convert ETH to XRP using the real time exchange rate IF our pool is insufficient
+    - TODO: research on efficient currency exchange using XRPL built-in deck, but gas fees seem to be incurred when ETH is sent across bridge
+    - maybe use this as a backup method if pool runs out
+
+#### 2. Buyer Purchases Tokens
+- The buyer/backend pays for the tokens using XRP.
+- The bridge detects the payment on XRPL and:
+  - Burns the equivalent XRPL tokens to reflect the sale.
+
+#### 3. Convert XRP to ETH
+- The bridge converts the buyer's XRP payment into ETH:
+  - Uses a decentralized exchange (DEX) or centralized exchange API to perform the conversion.
+  - Fetches real-time exchange rates for XRP-to-ETH.
+  
+#### 4. Transfer ETH to Seller's EVM Wallet
+- The bridge sends the converted ETH to the seller's EVM wallet:
+  - The seller receives the ETH equivalent of the buyer's XRP payment.
+  - The seller's locked ERC-20 tokens remain locked until the payment process is complete.
+
+#### Key Adjustments:
+1. **Dynamic Seller Management**:
+   - Seller's EVM address is retrieved dynamically based on the token listing ID.
+
+2. **Exchange Rate Calculations**:
+   - Real-time XRP-to-ETH rates are fetched during the payment process.
+
+3. **ETH Payments to Sellers**:
+   - The bridge directly transfers ETH to the seller’s EVM wallet after conversion.
+
+#### Advantages of EVM-Only Sellers:
+- **Simplified Setup**:
+  - Sellers only need an EVM wallet, removing the need for XRP wallets.
+- **Transparent Payments**:
+  - Sellers are paid in ETH, avoiding cross-chain complexities for them.

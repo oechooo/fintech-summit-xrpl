@@ -1,0 +1,21 @@
+
+project/
+├── src/
+│   ├── handlers/
+│   │   ├── ethPayment.js           # Detects and processes incoming ETH payments to trigger subsequent conversions or actions.
+│   │   ├── ethToXrpConversion.js   # Converts ETH to XRP using the bridge’s XRP reserve and deducts the converted XRP from the reserve.
+│   │   ├── xrpConversion.js        # Manages the end-to-end process of converting ETH to XRP, burning XRP tokens, and paying sellers in ETH.
+│   │   ├── xrplInteraction.js      # Interacts with the XRP Ledger (XRPL) for minting, burning, and transferring XRP tokens.
+│   ├── services/
+│   │   ├── evmBridge.js            # Handles interactions with the Ethereum Virtual Machine (EVM) smart contract, including token minting and ETH payments.
+│   │   ├── xrpFund.js              # Manages the XRP reserve for the bridge, including adding, deducting, and checking balances.
+│   │   ├── paymentRouter.js        # Coordinates payment routing between Ethereum and XRP, ensuring seamless interoperability.
+│   │   ├── xrpFunds.js             # Deducts XRP from reserve
+│   ├── config/
+│   │   ├── config.js               # Manages configuration settings and environment variables for the backend.
+│   ├── routes/
+│   │   ├── bridge.js               # Defines API endpoints for users (buyers and sellers) to interact with the bridge functionalities.
+│   ├── app.js                      # Serves as the entry point for the backend server, initializing and starting the API.
+│   ├── utils.js                    # Provides helper functions like fetching exchange rates, logging, and other reusable utilities.
+├── .env                            # Environment variables (e.g., RPC URLs, keys)
+├── package.json                    # Node.js dependencies
